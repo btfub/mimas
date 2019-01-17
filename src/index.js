@@ -22,14 +22,113 @@ import Stroke from 'ol/style/Stroke.js'; //my
 //import DimensionSwitcher from 'ol/control/DimensionSwitcher.js'; //my //? working ?
 import LayerGroup from 'ol/layer/Group.js'; //my 
 
-/* //ORIGINAL
+// START DIMENSION SWITCHER
+//export function ol.control.DimensionSwitcher(opt_options){ // IDEA 1
+var DimensionSwitcher ={function(Control){
+  function DimensionSwitcher(opt_options) {
+//ol.control.DimensionSwitcher = function(opt_options) {
+
+  var options = opt_options ? opt_options : {};
+
+  var className = options.className !== undefined ? options.className : 'ol-rotate';
+
+  var label = options.label !== undefined ? options.label : '2D';
+  this.labelNode_ = typeof label === 'string' ? document.createTextNode(label) : label;
+      
+  var label3D = options.label3D !== undefined ? options.label3D : '3D';
+  this.label3DNode_ = typeof label3D === 'string' ? document.createTextNode(label3D) : label3D;
+
+  /**
+   * @type {Element}
+   * @private
+   */
+  /*this.label_ = null;
+  this.label_ = document.createElement('span');
+  this.label_.className = 'ol-dimension';
+  this.label_.textContent = label;*/
+
+  var tipLabel = options.tipLabel ? options.tipLabel : 'Toggle Dimension';
+    
+  var button = document.createElement('button');
+  button.className = className + '-reset';
+  //assign the title 'Toggle Dimension' to the button
+  button.title = tipLabel;
+  button.setAttribute('type', 'button');
+  //button.title = tipLabel;
+  button.appendChild(this.labelNode_);
+
+  ol.events.listen(button, ol.events.EventType.CLICK,
+      ol.control.DimensionSwitcher.prototype.handleClick_, this);
+
+  var cssClasses = className + ' ' + ol.css.CLASS_UNSELECTABLE + ' ' +
+      ol.css.CLASS_CONTROL;
+  var element = document.createElement('div');
+  element.className = cssClasses;
+  element.appendChild(button);
+
+  ol.control.Control.call(this, {
+    element: element,
+    target: options.target
+  });
+
+
+};
+//} // IDEA 2
+ol.inherits(ol.control.DimensionSwitcher, ol.control.Control);
+
+/**
+ * @param {Event} event The event to handle
+ * @private
+ */
+ol.control.DimensionSwitcher.prototype.handleClick_ = function(event) {
+  event.preventDefault();
+  this.toggle3D();
+  this.changeLabel_();
+};
+
+/**
+ * @private
+ */
+//definition of the handleDimensionChange_ function
+ol.control.DimensionSwitcher.prototype.changeLabel_ = function() {     //change "handleFullScreenChange_" to "handleDimensionChange_"
+  var map = this.getMap();
+  var button = this.element.firstElementChild;
+  if (!app.is3D) {
+    ol.dom.replaceNode(this.label3DNode_, this.labelNode_);
+    } else {
+    ol.dom.replaceNode(this.labelNode_, this.label3DNode_);
+  }
+  if (map) {
+    map.updateSize();
+  }
+};
+
+/**
+ * @private
+ */
+ol.control.DimensionSwitcher.prototype.toggle3D = function() {
+  var map = this.getMap();
+  var view = map.getView();
+  if (app.is3D==true) {
+  //console.dir("switch to 2D");
+  app.ol3d.setEnabled(false);
+  app.is3D=false;
+  } else {
+    //console.dir("switch to 3D");
+    app.ol3d.setEnabled(true);
+    app.is3D=true;
+  }
+};
+
+// END DIMENSION SWITCHER
+//ORIGINAL
 let tileWorldImagery = new TileLayer({
     source: new XYZ({
       url: 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
       crossOrigin: 'Anonymous',
     })
   });
-*/
+
 /* // STAMEN EXAMPLE
 let stamen = new TileLayer({
     source: new Stamen({
@@ -38,6 +137,7 @@ let stamen = new TileLayer({
   });
 */
 
+/* 
 // MY
 let base = new TileLayer({
       preload: 5,
@@ -97,7 +197,7 @@ let N1644785949_foot = new TileLayer({
 	})
 });
  // HAS TROUBLE WITH "image"
- /*
+
 var cassImages=['N1644784329', 'N1644784749', 'N1644785949', 'N1644786249','N1644782658', 'N1644783429'];
 let cassImageLayers = [];
 var tmpSource, tmpTile;
@@ -118,7 +218,7 @@ for (image of cassImages) { // issue here
     });
     cassImageLayers.push(tmpTile);
 }
-*/
+
 let gridTileWms = new TileLayer({
 	preload: 5,
 	title: "Graticule",
@@ -172,7 +272,7 @@ let gridwfs = new VectorLayer({
 	  })
 	})
 });
-
+*/
 
 let view = new View({
   projection: 'EPSG:4326',
@@ -197,19 +297,19 @@ let map = new Map({
   target: "map",
   projection: 'EPSG:3857',
   layers: [
-    //tileWorldImagery,
-    //stamen, //my
-    base, //my
-    ISS_126MI_FP3DAYMAP001,//my
-    N1644785949_foot,//my
+    tileWorldImagery,
+    //stamen//, //my
+    //base, //my
+    //ISS_126MI_FP3DAYMAP001,//my
+    //N1644785949_foot,//my
     /*new LayerGroup({ //my
       'title': 'Individual images',
       visible': true,
       layers: cassImageLayers
       }),*/
-    gridTileWms,//my
-    grid,//my
-    gridwfs//my
+    //gridTileWms,//my
+    //grid,//my
+    //gridwfs//my
 
   ],
   /*view: new View({
