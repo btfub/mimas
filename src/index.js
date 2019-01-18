@@ -10,29 +10,34 @@ import TileLayer from 'ol/layer/Tile.js';
 import XYZ from 'ol/source/XYZ.js';
 
 import {ImageCanvas as ImageCanvasSource, Stamen} from 'ol/source.js';//my
-import TileWMS from 'ol/source/Tile.js'; //my
-import ImageLayer from 'ol/layer/Image.js'; //my
-import ImageWMS from 'ol/source/Image.js'; //my
+//import TileWMS from 'ol/source/Tile.js'; //my
+import TileWMS from 'ol/source/TileWMS.js';
+//import ImageLayer from 'ol/layer/Image.js'; //my
+//import ImageWMS from 'ol/source/Image.js'; //my
+import {Image as ImageLayer, Tile as TileLayer} from 'ol/layer.js';
+import ImageWMS from 'ol/source/ImageWMS.js';
 import VectorSource from 'ol/source/Vector.js'; //my
 import GeoJSON from 'ol/format/GeoJSON.js'; //my
 import VectorLayer from 'ol/layer/Vector.js'; //my
 import Style from 'ol/style/Style.js'; //my
 import Stroke from 'ol/style/Stroke.js'; //my
-//import LayerSwitcher from 'ol/control/LayerSwitcher.js'; //my //? working ?
+import LayerSwitcher from 'ol-layerswitcher/dist/ol-layerswitcher.js'; //my //? working ?
+import 'ol-layerswitcher/src/ol-layerswitcher.css';
 import LayerGroup from 'ol/layer/Group.js'; //my 
+
 
 // START CUSTOM CONTROL
 
 // END CUSTOM CONTROL
-/* 
+
 //ORIGINAL
+/*
 let tileWorldImagery = new TileLayer({
     source: new XYZ({
       url: 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
       crossOrigin: 'Anonymous',
     })
   });
-
 // STAMEN EXAMPLE
 let stamen = new TileLayer({
     source: new Stamen({
@@ -44,18 +49,15 @@ let stamen = new TileLayer({
 
 // MY
 let base = new TileLayer({
-      preload: 5,
-      title: "Mimas Basemap (DLR)",
+      //preload: 5,
+      //title: "Mimas Basemap (DLR)",
       //type: "base",
-      visible: true,
+      //visible: true,
       source: new TileWMS({
               url: 'http://maps.planet.fu-berlin.de/mimas-bin/wms',
-              params: {
-                      LAYERS: 'BASE',
-                      VERSION: '1.3.0',
-                      TILED: true
-              },
-              wrapX: false
+              params: { 'LAYERS': 'BASE', 'VERSION': '1.3.0', 'TILED': true },
+              serverType: 'mapserver'//,
+              //wrapX: false
       })
 });
 let geo1001 = new TileLayer({
@@ -101,8 +103,8 @@ let N1644785949_foot = new TileLayer({
 	})
 });
  // HAS TROUBLE WITH "image"
-/*
 var cassImages=['N1644784329', 'N1644784749', 'N1644785949', 'N1644786249','N1644782658', 'N1644783429'];
+var image;
 let cassImageLayers = [];
 var tmpSource, tmpTile;
 for (image of cassImages) { // issue here
@@ -122,7 +124,7 @@ for (image of cassImages) { // issue here
     });
     cassImageLayers.push(tmpTile);
 }
-*/
+
 let gridTileWms = new TileLayer({
 	preload: 5,
 	title: "Graticule",
@@ -194,20 +196,21 @@ let controls = new ol.control.defaults({
    app.LayerSwitcher
 ]);
 */
+let singlegroup = new LayerGroup({ //my
+      'title': 'Individual images',
+      //visible': true,
+      layers: cassImageLayers
+	});
 let map = new Map({
   target: "map",
   projection: 'EPSG:3857',
   layers: [
-    //tileWorldImagery//,
+    //tileWorldImagery,
     //stamen//, //my
     base, //my
     ISS_126MI_FP3DAYMAP001,//my
     N1644785949_foot,//my
-    /*new LayerGroup({ //my
-      'title': 'Individual images',
-      visible': true,
-      layers: cassImageLayers
-      }),*/
+    singlegroup,
     gridTileWms,//my
     grid,//my
     gridwfs//my
@@ -224,12 +227,19 @@ let map = new Map({
   //controls: controls //my
 });
 
+var layerSwitcher = new LayerSwitcher({
+        tipLabel: 'Légende' // Optional label for button
+    });
+
+map.addControl(layerSwitcher);
+
 const ol3d = new OLCesium({
   map: map,
   sceneOptions: { show: true }
   }); // map is the ol.Map instance
 
 //let ol3d.scene_.skyAtmosphere.show=false; //my //issue here
+
 
 //is3D = true; //my
 ol3d.setEnabled(true);
