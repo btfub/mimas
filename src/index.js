@@ -8,27 +8,21 @@ import View from 'ol/View.js';
 import * as olProj from 'ol/proj.js';
 import TileLayer from 'ol/layer/Tile.js';
 import XYZ from 'ol/source/XYZ.js';
-
-import {ImageCanvas as ImageCanvasSource, Stamen} from 'ol/source.js';//my
-//import TileWMS from 'ol/source/Tile.js'; //my
+// START- MODULES ADDED BY ME
+import {ImageCanvas as ImageCanvasSource, Stamen} from 'ol/source.js';
 import TileWMS from 'ol/source/TileWMS.js';
-//import ImageLayer from 'ol/layer/Image.js'; //my
-//import ImageWMS from 'ol/source/Image.js'; //my
 import {Image as ImageLayer, Tile as TileLayer} from 'ol/layer.js';
 import ImageWMS from 'ol/source/ImageWMS.js';
-import VectorSource from 'ol/source/Vector.js'; //my
-import GeoJSON from 'ol/format/GeoJSON.js'; //my
-import VectorLayer from 'ol/layer/Vector.js'; //my
-import Style from 'ol/style/Style.js'; //my
-import Stroke from 'ol/style/Stroke.js'; //my
-import LayerSwitcher from 'ol-layerswitcher/dist/ol-layerswitcher.js'; //my //? working ?
-import 'ol-layerswitcher/src/ol-layerswitcher.css';
-import LayerGroup from 'ol/layer/Group.js'; //my 
-
-
-// START CUSTOM CONTROL
-
-// END CUSTOM CONTROL
+import VectorSource from 'ol/source/Vector.js'; 
+import GeoJSON from 'ol/format/GeoJSON.js'; 
+import VectorLayer from 'ol/layer/Vector.js'; 
+import Style from 'ol/style/Style.js'; 
+import Stroke from 'ol/style/Stroke.js'; 
+import LayerSwitcher from 'ol-layerswitcher/dist/ol-layerswitcher.js';
+import 'ol-layerswitcher/src/ol-layerswitcher.css'; //when commente out, button disappears although
+//import 'src/css/main.css'; //attempt to overwrite default layerswitcher design --> doesn't work
+import LayerGroup from 'ol/layer/Group.js'; 
+// END - MODULES ADDED BY ME
 
 //ORIGINAL
 /*
@@ -102,7 +96,7 @@ let N1644785949_foot = new TileLayer({
 		wrapX: false
 	})
 });
- // HAS TROUBLE WITH "image"
+
 var cassImages=['N1644784329', 'N1644784749', 'N1644785949', 'N1644786249','N1644782658', 'N1644783429'];
 var image;
 let cassImageLayers = [];
