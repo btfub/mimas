@@ -9,23 +9,23 @@ html, body, #cesiumContainer {
 
 /* Overwrite default styles*/
 
-/*.ol-control button{*/
+/*.ol-control button{
 .layer-switcher button {
     width: 2em;
     height: 2em;
     background-color: black;
     border: None;
     #color:white;
-    font-family: 'Impact', fantasy, sans-serif;
-}
+    font-family: 'Impact', fantasy, sans-serif;*/
+}*/
 
-/*.ol-control button:hover {*/
+/*.ol-control button:hover {
 .layer-switcher button:hover {
     background: black;
     #border: 2px solid #e6ce1d;
     border-radius: 5px;
     color:#fdec00;
-}
+}*/
 /*
 .ol-control button:focus{
     background-color:black;

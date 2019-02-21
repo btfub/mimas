@@ -19,8 +19,12 @@ import VectorLayer from 'ol/layer/Vector.js';
 import Style from 'ol/style/Style.js'; 
 import Stroke from 'ol/style/Stroke.js'; 
 import LayerSwitcher from 'ol-layerswitcher/dist/ol-layerswitcher.js';
-import 'ol-layerswitcher/src/ol-layerswitcher.css'; //when commente out, button disappears although
-//import 'src/css/main.css'; //attempt to overwrite default layerswitcher design --> doesn't work
+
+import 'ol-layerswitcher/src/my-ol-layerswitcher.css'; //works but not ideal, file in modul folder
+//import 'ol-layerswitcher/src/ol-layerswitcher.css'; //when commented out, button disappears althogether
+//import 'src/css/my-ol-layerswitcher.css'; // cannot find file
+//import 'src/css/main.css'; //attempt to overwrite default layerswitcher design --> doesn't work, error when uncommented
+
 import LayerGroup from 'ol/layer/Group.js'; 
 // END - MODULES ADDED BY ME
 
