@@ -9,6 +9,10 @@
   import TileLayer from 'ol/layer/Tile.js';
   import XYZ from 'ol/source/XYZ.js';
 
+  // IMPORT pinch zoom controle
+  import {defaults as defaultInteractions, PinchZoom} from 'ol/interaction.js';
+  //import '/css/main.css'; //doesn't work
+
   let tileWorldImagery = new TileLayer({
       source: new XYZ({
         url: 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
@@ -16,9 +20,18 @@
       })
     });
 
+// START pinch zoom controle
+let pinchzoom = defaultInteractions({pinchZoom: false}).extend([
+          new PinchZoom({
+            constrainResolution: true // force zooming to a integer zoom
+          })
+        ])
+// END pinch zoom controle
+
   let map = new Map({
     target: "map",
     projection: 'EPSG:3857',
+    interactions: pinchzoom,
     layers: [
       tileWorldImagery
     ],
