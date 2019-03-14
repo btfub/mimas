@@ -1,8 +1,9 @@
-goog.provide('ol.control.MoonSwitcher');
+//goog.provide('ol.control.MoonSwitcher');
 ////goog.provide('ol.control.MoonSwitcher');//OL5 --> remove
 
-ol.control.MoonSwitcher = function(opt_options) {
-//export function ol.control.MoonSwitcher(opt_options) { //OL5
+//ol.control.MoonSwitcher = function(opt_options) {
+export function ol.control.MoonSwitcher(opt_options) { //OL5
+//var MoonSwitcher = function(opt_options) {
 
   var options = opt_options ? opt_options : {};
 
@@ -17,7 +18,7 @@ ol.control.MoonSwitcher = function(opt_options) {
   var tipLabel = options.tipLabel ? options.tipLabel : 'Toggle Moon';
   
 
-  //what happends when clicking on dropdown element
+  //what happens when clicking on dropdown element
   var selectList = document.createElement("select");
   selectList.id = "mySelect";
   selectList.title = tipLabel; //see next commented paragraph
@@ -59,8 +60,9 @@ ol.inherits(ol.control.MoonSwitcher, ol.control.Control);
 * @private
 */
 //what should happend when drop drop down menu is clicked
-ol.control.MoonSwitcher.prototype.handleSelection_ = function(event) {
-//export function ol.control.MoonSwitcher.prototype.handleSelection(event) { //OL5
+//ol.control.MoonSwitcher.prototype.handleSelection_ = function(event) {
+export function ol.control.MoonSwitcher.prototype.handleSelection(event) { //OL5
+//var MoonSwitcher.prototype.handleSelection_ = function(event) {//OL5
   event.preventDefault();
   this.toggleMoon();
   //return new WHAT({}); //OL5 --> ?
@@ -69,8 +71,9 @@ ol.control.MoonSwitcher.prototype.handleSelection_ = function(event) {
 /**
  * @private
  */
-ol.control.MoonSwitcher.prototype.toggleMoon = function() {
- //export function ol.control.MoonSwitcher.prototype.toggleMoon() { //OL5
+//ol.control.MoonSwitcher.prototype.toggleMoon = function() {
+export function ol.control.MoonSwitcher.prototype.toggleMoon() { //OL5
+//var MoonSwitcher.prototype.toggleMoon = function() {//OL5
 
   var map = this.getMap();
   var view = map.getView();

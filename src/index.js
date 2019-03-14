@@ -13,6 +13,9 @@ import XYZ from 'ol/source/XYZ.js';
 import {defaults as defaultInteractions, PinchZoom} from 'ol/interaction.js';
 //import '/css/main.css'; //doesn't work
 
+// IMPORT moonswitcher controle
+import ol.control.MoonSwitcher from 'moonswitcher.js'; //funktioniert noch nicht
+
 let tileWorldImagery = new TileLayer({
     source: new XYZ({
       url: 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
