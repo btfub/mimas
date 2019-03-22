@@ -7,6 +7,7 @@ html, body, #cesiumContainer {
 }
 
 /* copied from https://openlayers.org/en/v5.3.0/css/ol.css --> styles I am trying to overwrite */
+/*
 .ol-box{box-sizing:border-box;border-radius:2px;border:2px solid #00f}
 .ol-mouse-position{top:8px;right:8px;position:absolute}
 .ol-scale-line{background:rgba(0,60,136,.3);border-radius:4px;bottom:8px;left:8px;padding:2px;position:absolute}
@@ -55,4 +56,36 @@ html, body, #cesiumContainer {
 .ol-overviewmap:not(.ol-collapsed){background:rgba(255,255,255,.8)}
 .ol-overviewmap-box{border:2px dotted rgba(0,60,136,.7)}
 .ol-overviewmap .ol-overviewmap-box:hover{cursor:move}
+*/
 /*# sourceMappingURL=ol.css.map */
+
+/* START - trying to overwrite with this */ /*NOT WORKING*/
+.ol-control button{
+    width: 2em;
+    height: 2em;
+    background-color: black;
+    border: None;
+    #color:white;
+    font-family: 'Impact', fantasy, sans-serif;
+}
+
+.ol-control button:hover {
+    background: black;
+    #border: 2px solid #e6ce1d;
+    border-radius: 5px;
+    color:#fdec00;
+}
+
+.ol-control button:focus{
+    background-color:black;
+    outline: none;
+}
+
+.ol-control{
+    background-color: black;
+}
+
+.ol-control:hover{
+    background-color: black;
+}
+/* END - trying to overwrite with this */ /*NOT WORKING*/

@@ -11,7 +11,9 @@
 
   // IMPORT pinch zoom controle
   import {defaults as defaultInteractions, PinchZoom} from 'ol/interaction.js';
-  //import '/css/main.css'; //doesn't work
+  //import 'css/main.css'; //error
+  //import '/css/main.css'; //error
+  //import 'src/css/main.css'; //error
 
   let tileWorldImagery = new TileLayer({
       source: new XYZ({
