@@ -1,9 +1,11 @@
 //goog.provide('ol.control.MoonSwitcher');
 ////goog.provide('ol.control.MoonSwitcher');//OL5 --> remove
+import Map from 'ol/Map.js'; //Ol5
 
 //ol.control.MoonSwitcher = function(opt_options) {
-export function ol.control.MoonSwitcher(opt_options) { //OL5
-//var MoonSwitcher = function(opt_options) {
+//export function ol.control.MoonSwitcher(opt_options) { //OL5
+export function MoonSwitcher(opt_options) { //OL5
+//var MoonSwitcher = function(opt_options) {//OL5
 
   var options = opt_options ? opt_options : {};
 
@@ -61,18 +63,21 @@ ol.inherits(ol.control.MoonSwitcher, ol.control.Control);
 */
 //what should happend when drop drop down menu is clicked
 //ol.control.MoonSwitcher.prototype.handleSelection_ = function(event) {
-export function ol.control.MoonSwitcher.prototype.handleSelection(event) { //OL5
+//export function ol.control.MoonSwitcher.prototype.handleSelection(event) { //OL5
+export function MoonSwitcher.prototype.handleSelection(event) { //OL5
 //var MoonSwitcher.prototype.handleSelection_ = function(event) {//OL5
   event.preventDefault();
-  this.toggleMoon();
+  //this.toggleMoon();
   //return new WHAT({}); //OL5 --> ?
+  return this.toggleMoon(); //OL5
 };
 
 /**
  * @private
  */
 //ol.control.MoonSwitcher.prototype.toggleMoon = function() {
-export function ol.control.MoonSwitcher.prototype.toggleMoon() { //OL5
+//export function ol.control.MoonSwitcher.prototype.toggleMoon() { //OL5
+export function MoonSwitcher.prototype.toggleMoon() { //OL5
 //var MoonSwitcher.prototype.toggleMoon = function() {//OL5
 
   var map = this.getMap();
@@ -90,4 +95,6 @@ export function ol.control.MoonSwitcher.prototype.toggleMoon() { //OL5
   app.map.getLayerGroup().setLayers(new ol.Collection(app.moonlayers));
   app.LayerSwitcher.renderPanel();
   //return new WHAT({}); //OL5 --> ?
+  return map; //OL5 --> ?
+  return view; //OL5 --> ?
 };

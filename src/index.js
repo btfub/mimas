@@ -14,7 +14,9 @@ import {defaults as defaultInteractions, PinchZoom} from 'ol/interaction.js';
 //import '/css/main.css'; //doesn't work
 
 // IMPORT moonswitcher controle
-import ol.control.MoonSwitcher from 'moonswitcher.js'; //funktioniert noch nicht
+//import ol.control.MoonSwitcher from 'moonswitcher.js'; //funktioniert noch nicht
+//import MoonSwitcher from 'moonswitcher.js'; //funktioniert noch nicht
+//import 'moonswitcher.js'; //funktioniert noch nicht
 
 let tileWorldImagery = new TileLayer({
     source: new XYZ({
