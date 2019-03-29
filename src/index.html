@@ -1,4 +1,5 @@
 <html>
+	
 	<head>
 		<meta charset="utf-8">
 	  	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -6,7 +7,38 @@
 		<title>Cesium + OL-Cesium + Webpack</title>
 		<!-- IMPORT STYLE pinch zoom controle -->
 		<link rel="stylesheet" href="https://openlayers.org/en/v5.3.0/css/ol.css" type="text/css">
-		<!--link rel="stylesheet" href="src/css/main.css" type="text/css"-->
+		<!--link rel="stylesheet" href="src/css/main.css" type="text/css"--> <!-- ATTEMPT 1-->
+		<!--link rel="stylesheet" href="css/main.css" type="text/css"--> <!-- ATTEMPT 2-->
+		
+		<!-- styles could not be imported in file, work-around by overwriting them here -->
+		<style> 
+		/* START - PINCH ZOOM - overwrite defaults from https://openlayers.org/en/v5.3.0/css/ol.css */
+		.ol-control button{
+			width: 2em;
+			height: 2em;
+			background-color: black;
+			border: None;
+			#color:white;
+			font-family: 'Impact', fantasy, sans-serif;
+		}
+		.ol-control button:hover {
+			background: black;
+			#border: 2px solid #e6ce1d;
+			border-radius: 5px;
+			color:#fdec00;
+		}
+		.ol-control button:focus{
+			background-color:black;
+			outline: none;
+		}
+		.ol-control{
+			background-color: black;
+		}
+		.ol-control:hover{
+			background-color: black;
+		}
+		/* END - PINCH ZOOM - overwrite defaults from https://openlayers.org/en/v5.3.0/css/ol.css */
+		</style>
 	</head>
 	<body>
     <input type="button" onclick="ol3d.setEnabled(!ol3d.getEnabled())" value="Toggle OL-Cesium"></input>
