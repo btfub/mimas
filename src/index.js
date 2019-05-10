@@ -15,12 +15,23 @@ import Cesium from 'cesium/Cesium';
   //import '/css/main.css'; //error
   //import 'src/css/main.css'; //error
 
+  // IMPORT layerswitcher testlayers
+  import Stamen from 'ol/source/Stamen.js';
+
   let tileWorldImagery = new TileLayer({
       source: new XYZ({
         url: 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
         crossOrigin: 'Anonymous',
       })
     });
+
+// START layerwitcher testlayers
+let stamen = new TileLayer({
+    source: new Stamen({
+      layer: 'watercolor'
+    })
+  });
+// END layerswitcher testlayers
 
 // START pinch zoom controle
 let pinchzoom = defaultInteractions({pinchZoom: false}).extend([
@@ -35,7 +46,8 @@ let pinchzoom = defaultInteractions({pinchZoom: false}).extend([
     projection: 'EPSG:3857',
     interactions: pinchzoom,
     layers: [
-      tileWorldImagery
+      tileWorldImagery,
+      stamen
     ],
     view: new View({
       center: olProj.fromLonLat([134.364805, -26.710497]),
