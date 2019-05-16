@@ -22,6 +22,9 @@ import Stamen from 'ol/source/Stamen.js';
 // START moonswitcher definition in index.js attempt
 import Collection from 'ol/Collection';
 import {defaults as defaultControls, Control} from 'ol/control.js';
+import {inherits as ol_inherits} from 'ol';
+import LayerSwitcher from 'ol-layerswitcher/dist/ol-layerswitcher.js';
+import Interaction from 'ol/interaction/Interaction.js'; // attempt to solve error, but hasn't worked
 
 var MoonSwitcher = (function (Control){
   function MoonSwitcher(opt_options) {
@@ -71,7 +74,7 @@ var MoonSwitcher = (function (Control){
   });
   };
 
-inherits(MoonSwitcher, Control); // PROBLEM HERE
+ol_inherits(MoonSwitcher, Control);
 
 //what should happend when drop drop down menu is clicked
   MoonSwitcher.prototype.handleSelection_ = function handleSelection_ (event) {
@@ -135,10 +138,13 @@ let pinchzoom = defaultInteractions({pinchZoom: false}).extend([
         ])
 // END pinch zoom controle
 
+// collect controles
+var controles = new defaultControls({attributions: false}).extend([pinchzoom, MoonSwitcher, LayerSwitcher]); 
+
   let map = new Map({
     target: "map",
     projection: 'EPSG:3857',
-    interactions: [pinchzoom,moonswitcher],
+    interactions: controles,
     layers: moonlayers,
     view: new View({
       center: olProj.fromLonLat([134.364805, -26.710497]),
