@@ -24,7 +24,14 @@ import Collection from 'ol/Collection';
 import {defaults as defaultControls, Control} from 'ol/control.js';
 import {inherits as ol_inherits} from 'ol';
 import LayerSwitcher from 'ol-layerswitcher/dist/ol-layerswitcher.js';
-import Interaction from 'ol/interaction/Interaction.js'; // attempt to solve error, but hasn't worked
+
+// attemps to solve error
+import Interaction from 'ol/interaction/Interaction.js';
+import DragAndDrop from 'ol/interaction/DragAndDrop';
+import PluggableMap from 'ol/PluggableMap';
+import Collection from 'ol/Collection';
+import Event from 'ol/events/Event';
+// doesn't seem to work
 
 var MoonSwitcher = (function (Control){
   function MoonSwitcher(opt_options) {
@@ -49,8 +56,9 @@ var MoonSwitcher = (function (Control){
   selectList.appendChild(this.label2Node_);//see next commented paragraph
   selectList.setAttribute('type', 'select');//see next commented paragraph
 
-  selectList.addEventListener('click',MoonSwitcher.prototype.handleSelection_, this); //OL5 of ol.events.listen = ListenerFunction?
-  
+  selectList.addEventListener('click',MoonSwitcher.prototype.handleSelection_, this);
+  //ListenerFunction(selectList, ol.events.EventType.CLICK,ol.control.MoonSwitcher.prototype.handleSelection_, this); 
+  //original:   ol.events.listen(selectList, ol.events.EventType.CLICK,ol.control.MoonSwitcher.prototype.handleSelection_, this); 
 
   //what appears on drop down menu
   var array = ["Mimas","Enceladus"];
@@ -122,8 +130,8 @@ let stamen = new TileLayer({
 // END layerswitcher testlayers
 
 //START moonswitcher attempts
-var m = [stamen, tileWorldImagery];
-var m2 = [tileWorldImagery,stamen];
+var m = [tileWorldImagery,stamen];
+var m2 = [stamen, tileWorldImagery];
 
 var isMimas = false;
 var moonlayers = isMimas == true ? m: m2;
