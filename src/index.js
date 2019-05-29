@@ -31,6 +31,7 @@ import DragAndDrop from 'ol/interaction/DragAndDrop';
 import PluggableMap from 'ol/PluggableMap';
 import Collection from 'ol/Collection';
 import Event from 'ol/events/Event';
+import Graticule from 'ol/Graticule';
 // doesn't seem to work
 
 var MoonSwitcher = (function (Control){
